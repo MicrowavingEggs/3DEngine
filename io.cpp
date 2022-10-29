@@ -51,7 +51,7 @@ int main(){
         string line;
         while(getline(file, line)){ 
             vector<string> tokens{slice(line,"  ")};
-            for (int i = 0; i < tokens.size(); i++){
+            for (int i = 1; i < tokens.size(); i++){
                 cout << tokens[i] << endl;
             }
             cout << endl;
