@@ -49,11 +49,10 @@ int main(){
 
     if (file) {
         string line;
-
-        while(getline(file, line)){
+        while(getline(file, line)){ 
             vector<string> tokens{slice(line,"  ")};
             for (int i = 0; i < tokens.size(); i++){
-                cout << tokens[i] << " ";
+                cout << tokens[i] << endl;
             }
             cout << endl;
         }
