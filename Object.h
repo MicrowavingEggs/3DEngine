@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <array>
 #include <vector>
 #include <cstring>
 
@@ -10,8 +11,8 @@ using namespace std;
 
 class Object {
     private:
-        vector<double[3]> vertexes;
-        vector<double[3]> faces;
+        vector<double[3]> vertexes{{0.0,0.0,0.0}};
+        vector<int[3]> faces{{0,0,0}};
     
     public:
         Object();

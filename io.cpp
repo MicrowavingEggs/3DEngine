@@ -1,27 +1,48 @@
 #include "io.h"
 
-/* Object */ void CreateObject(string path){
+Object CreateObject(string path){
 
-    /* Object teapot; */
+    vector<double[3]> v;
+    vector<int[3]> f;
 
     fstream file;
-    file.open(path);
+    file.open("teapot.obj");
 
     if (file) {
         string line;
-
         while(getline(file, line)){
-            vector<string> tokens{slice(line," ")};
-            for (int i = 0; i < tokens.size(); i++){
-                cout << tokens[i];
+            vector<string> tokens{slice(line,"  ")};
+
+            if (tokens[0][0] == 'v'){
+                double temp_vertexes[3];
+                temp_vertexes[0] = stod(tokens[1]);
+                temp_vertexes[1] = stod(tokens[2]);
+                temp_vertexes[2] = stod(tokens[3]);
+                v.push_back(temp_vertexes);
             }
-            cout << endl;
+
+            if (tokens[0][0] == 'f'){
+                int temp_face[3];
+                temp_face[0] = stoi(tokens[1]);
+                temp_face[1] = stoi(tokens[2]);
+                temp_face[2] = stoi(tokens[3]);
+                f.push_back(temp_face);
+            }
         }
     }
 
     file.close();
 
-    /*return teapot; */
+    for (int i = 0; i < v.size(); i++){
+        cout << v[i];
+    }
+
+    for (int i = 0; i < f.size(); i++){
+        cout << f[i];
+    }
+
+    Object teapot(v,f);
+    return teapot;
 }
 
 
@@ -41,24 +62,4 @@ vector<string> slice(string input, string delimiter){ /* Tokenize input by remov
     tokens.push_back(input.substr(token_index,(input.size() - token_index)));
 
     return tokens;
-}
-
-int main(){
-    fstream file;
-    file.open("teapot.obj");
-
-    if (file) {
-        string line;
-        while(getline(file, line)){ 
-            vector<string> tokens{slice(line,"  ")};
-            for (int i = 1; i < tokens.size(); i++){
-                cout << tokens[i] << endl;
-            }
-            cout << endl;
-        }
-    }
-
-    file.close();
-
-    return 0;
 }

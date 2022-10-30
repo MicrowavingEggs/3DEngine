@@ -9,7 +9,7 @@ int main(int argc, char** argv){
 
     Object teapot{CreateObject("teapot.obj")};
 
-    cout << "teapot parsing finished";
+    cout << "teapot parsing finished. Now printing vertexes then faces :";
 
     return 0;
 
