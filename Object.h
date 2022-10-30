@@ -9,14 +9,21 @@
 
 using namespace std;
 
+struct vertex{
+    double x,y,z;
+};
+
+struct triangle{
+    vertex p[3];
+};
+
 class Object {
     private:
-        vector<double[3]> vertexes{{0.0,0.0,0.0}};
-        vector<int[3]> faces{{0,0,0}};
+        vector<triangle> faces;
     
     public:
         Object();
-        Object(vector<double[3]> vertexes,vector<int[3]> faces);
+        Object(vector<triangle> f);
         ~Object();
         void move(double dx,double dy,double dz);
         void rotate(double dtheta);

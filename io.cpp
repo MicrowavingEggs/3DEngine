@@ -2,8 +2,13 @@
 
 Object CreateObject(string path){
 
-    vector<double[3]> v;
+    /* Out data */
+    vector<triangle> faces;
+
+    /* Dummy Variables */
+    vector<vertex> v;
     vector<int[3]> f;
+
 
     fstream file;
     file.open("teapot.obj");
@@ -18,7 +23,7 @@ Object CreateObject(string path){
                 temp_vertexes[0] = stod(tokens[1]);
                 temp_vertexes[1] = stod(tokens[2]);
                 temp_vertexes[2] = stod(tokens[3]);
-                v.push_back(temp_vertexes);
+                v.push_back({stod(tokens[1]),stod(tokens[2]),stod(tokens[3])});
             }
 
             if (tokens[0][0] == 'f'){
@@ -31,17 +36,13 @@ Object CreateObject(string path){
         }
     }
 
+    for (int i=0; i < f.size(); i++){
+        faces.push_back({v[f[i][0]],v[f[i][1]],v[f[i][2]]});
+    }
+
     file.close();
-
-    for (int i = 0; i < v.size(); i++){
-        cout << v[i];
-    }
-
-    for (int i = 0; i < f.size(); i++){
-        cout << f[i];
-    }
-
-    Object teapot(v,f);
+    
+    Object teapot(faces);
     return teapot;
 }
 
